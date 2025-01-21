@@ -3,18 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Audio</title>
+    <title>2Mix Audio Processing</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Upload your file</h1>
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" accept="audio/*" required>
-        <button type="submit">Upload</button>
-    </form>
-
-    <!-- Auto Mix button -->
-    <form action="/process" method="POST">
-        <button type="submit">Apply Automatic Mix</button>
-    </form>
+    <div class="container">
+        <h1>Welcome to the 2Mix Audio Processing</h1>
+        <h3>Select an option to begin:</h3>
+        <div class="button-group">
+            <a href="{{ url_for('upload') }}">
+                <button class="button">Upload and Mix</button>
+            </a>
+            <a href="{{ url_for('upload') }}">
+                <button class="button">Mastering</button>
+            </a>
+            <a href="{{ url_for('upload') }}">
+                <button class="button">Optimize</button>
+            </a>
+        </div>
+    </div>
 </body>
 </html>
