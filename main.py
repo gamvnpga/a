@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
 import os
+from flask import Flask, request, jsonify, render_template, redirect, url_for
 import time
 
 app = Flask(__name__)
@@ -53,6 +53,7 @@ def select_preset(filename):
 @app.route('/customize/<filename>/<preset>', methods=['GET', 'POST'])
 def customize(filename, preset):
     if request.method == 'POST':
+        # カスタム設定の取得 (例: EQ, リバーブなど)
         eq_settings = request.form.get('eq', 'default')
         fade_in = request.form.get('fade_in', '0')
         fade_out = request.form.get('fade_out', '0')
@@ -62,12 +63,16 @@ def customize(filename, preset):
 # 処理ページ
 @app.route('/process/<filename>/<preset>/<eq>/<fade_in>/<fade_out>', methods=['GET'])
 def process(filename, preset, eq, fade_in, fade_out):
+    # 処理 (ここに2mix処理ロジックを追加)
     time.sleep(5)  # 処理をシミュレーション
     processed_file = f"processed_{filename}"
     processed_filepath = os.path.join(app.config['PROCESSED_FOLDER'], processed_file)
+    
+    # ダミー処理としてファイルコピー (実際の処理ロジックを追加)
     with open(os.path.join(app.config['UPLOAD_FOLDER'], filename), 'rb') as f_in:
         with open(processed_filepath, 'wb') as f_out:
             f_out.write(f_in.read())
+    
     return redirect(url_for('result', filename=processed_file))
 
 # 結果表示・ダウンロードページ
@@ -79,7 +84,10 @@ def result(filename):
 @app.route('/download/<filename>', methods=['GET'])
 def download(filename):
     filepath = os.path.join(app.config['PROCESSED_FOLDER'], filename)
-    return jsonify({"message": f"File available for download at {filepath}"})
+    if os.path.exists(filepath):
+        return jsonify({"message": f"File available for download at {filepath}"})
+    else:
+        return jsonify({"error": "File not found!"}), 404
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
