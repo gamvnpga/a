@@ -4,27 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customize Settings</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Customize your audio processing</h1>
-        <form action="{{ url_for('process', filename=filename, preset=preset) }}" method="POST">
-            <label for="eq">EQ Settings:</label>
-            <select name="eq">
-                <option value="default">Default</option>
-                <option value="bass_boost">Bass Boost</option>
-                <option value="treble_boost">Treble Boost</option>
-            </select>
-            <br>
-            <label for="fade_in">Fade In (seconds):</label>
-            <input type="number" name="fade_in" min="0" value="0">
-            <br>
-            <label for="fade_out">Fade Out (seconds):</label>
-            <input type="number" name="fade_out" min="0" value="0">
-            <br>
-            <button type="submit">Next</button>
-        </form>
-    </div>
+    <h1>Customize settings for {{ filename }}</h1>
+    <form action="/process/{{ filename }}/{{ preset }}/" method="post">
+        <label for="eq">Choose EQ Settings:</label>
+        <select name="eq" id="eq">
+            <option value="default">Default</option>
+            <option value="bass">Bass Boost</option>
+            <option value="treble">Treble Boost</option>
+        </select>
+        <br>
+        <label for="fade_in">Fade In:</label>
+        <input type="checkbox" name="fade_in" value="1">
+        <br>
+        <label for="fade_out">Fade Out:</label>
+        <input type="checkbox" name="fade_out" value="1">
+        <br>
+        <button type="submit">Process</button>
+    </form>
 </body>
 </html>
