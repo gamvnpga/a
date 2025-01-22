@@ -4,20 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select Preset</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Choose a preset for your audio</h1>
-        <form action="{{ url_for('customize', filename=filename) }}" method="POST">
-            <select name="preset" required>
-                <option value="edm">EDM</option>
-                <option value="cvllxxx">CVllXXX</option>
-                <option value="rock">Rock</option>
-                <option value="pop">Pop</option>
-            </select>
-            <button type="submit">Next</button>
-        </form>
-    </div>
+    <h1>Select a preset for file: {{ filename }}</h1>
+    <form action="/customize/{{ filename }}/" method="post">
+        <label for="preset">Choose Preset:</label>
+        <select name="preset" id="preset">
+            <option value="default">Default</option>
+            <option value="edm">EDM</option>
+            <option value="cvllxxx">CVllXXX</option>
+        </select>
+        <button type="submit">Next</button>
+    </form>
 </body>
 </html>
