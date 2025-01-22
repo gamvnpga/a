@@ -4,10 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV2 Network</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Welcome to CV2 Network</h1>
-    <p>Select an option below:</p>
-    <a href="/upload">Upload a File</a>
+    <header>
+        <h1>Welcome to CV2 Network</h1>
+        <p>Your next-generation audio processing platform.</p>
+    </header>
+
+    <section class="carousel">
+        <div class="carousel-item">
+            <a href="/upload">
+                <button>Upload a File</button>
+            </a>
+        </div>
+        <div class="carousel-item">
+            <a href="/mastering">
+                <button>Start Mastering</button>
+            </a>
+        </div>
+        <div class="carousel-item">
+            <a href="/optimize">
+                <button>Optimize Audio</button>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>Powered by CVllXXX</p>
+    </footer>
 </body>
 </html>
