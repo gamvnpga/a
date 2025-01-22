@@ -3,24 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2Mix Audio Processing</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>CV2 Network</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to the 2Mix Audio Processing</h1>
-        <h3>Select an option to begin:</h3>
-        <div class="button-group">
-            <a href="{{ url_for('upload') }}">
-                <button class="button">Upload and Mix</button>
-            </a>
-            <a href="{{ url_for('upload') }}">
-                <button class="button">Mastering</button>
-            </a>
-            <a href="{{ url_for('upload') }}">
-                <button class="button">Optimize</button>
-            </a>
-        </div>
-    </div>
+    <h1>Welcome to CV2 Network</h1>
+    <p>Select an option below:</p>
+    <a href="/upload">Upload a File</a>
 </body>
 </html>
